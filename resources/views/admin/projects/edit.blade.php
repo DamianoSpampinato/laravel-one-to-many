@@ -23,7 +23,14 @@
             <div>
                 <input type="file" name="img" id="img">
             </div>
-            <button class="btn btn-primary" type="submit">salva</button>
+            <select class="form-select" id="type_id" name="type_id">
+                <option value="">Selectiona Type</option>
+                    @foreach ($types as $type)
+                        <option @selected($type->id == old('type_id', $project->type_id)) value="{{ $type->id }}">{{ $type->name }}</option>
+                    @endforeach
+                </select>
+                <button class="btn btn-primary" type="submit">salva</button>
+            </div>
         </form>
     
 @endsection

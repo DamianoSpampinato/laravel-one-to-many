@@ -8,7 +8,7 @@ use App\Models\Project;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
-
+use App\Models\Type;
 class ProjectController extends Controller
 {
     /**
@@ -30,7 +30,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $types = Type::all();
+        return view('admin.projects.create', compact('types'));
     }
 
     /**
@@ -54,6 +55,10 @@ class ProjectController extends Controller
                     'nullable',
                     'image',
                     'max:256'
+                ],
+                'type'=> [
+                     'nullable',
+                     'exists:types,id'
                 ]
 
             ],
@@ -91,7 +96,8 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        return view('admin.projects.show', compact('project'));
+        $types = Type::all();
+        return view('admin.projects.show', compact('project','types'));
     }
 
     /**
@@ -102,7 +108,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+        $types = Type::all();
+        return view('admin.projects.edit', compact('project','types'));
     }
 
     /**
@@ -128,6 +135,10 @@ class ProjectController extends Controller
                     'image',
                     'max:256'
                 ],
+                'type'=> [
+                    'nullable',
+                    'exists:types,id'
+               ]
                 
             ],
                 [

@@ -12,5 +12,6 @@
 <div><strong>Slug</strong>: {{$project['slug']}}</div>
 <div><strong>Client Name</strong>: {{$project['client_name']}}</div>
 <div><strong>Id project</strong>: {{$project['id']}}</div>
+<div><strong>Type</strong>: {{ $project->type ? $project->type->name : 'No category' }}</div>
 
 @endsection
